@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".view.fragment.SignInFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/size_15"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/varela"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/size_15"
+                android:textSize="@dimen/extra_large_text"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:text="@string/app_name"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_50"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/varela"
+            android:textStyle="bold"
+            android:textSize="@dimen/semi_medium_text"
+            android:text="Welcome back!"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_25"
+            android:textColor="@color/colorLightGrey"
+            android:fontFamily="@font/varela"
+            android:textSize="@dimen/small_text"
+            android:text="Enter your credentials"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_marginTop="@dimen/size_5"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:background="@drawable/bg_dark_grey_15">
+
+            <ImageView
+                android:id="@+id/ic1"
+                android:layout_width="@dimen/size_25"
+                android:layout_height="@dimen/size_25"
+                android:layout_centerVertical="true"
+                android:src="@drawable/email"
+                app:tint="@color/colorGrey" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/size_15"
+                android:layout_toEndOf="@id/ic1"
+                android:background="@drawable/bg_dark_grey_15"
+                android:fontFamily="@font/varela"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorGrey" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_marginTop="@dimen/size_10"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:background="@drawable/bg_dark_grey_15">
+
+            <ImageView
+                android:id="@+id/ic2"
+                android:layout_width="@dimen/size_25"
+                android:layout_height="@dimen/size_25"
+                android:src="@drawable/password"
+                android:layout_centerVertical="true"
+                app:tint="@color/colorGrey" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/size_15"
+                android:layout_toEndOf="@id/ic2"
+                android:background="@drawable/bg_dark_grey_15"
+                android:fontFamily="@font/varela"
+                android:hint="Enter your password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorGrey" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/auth_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_marginTop="@dimen/size_35"
+            android:background="@drawable/bg_light_red_15">
+
+            <TextView
+                android:id="@+id/auth_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/varela"
+                android:text="Sign In"
+                android:textColor="@color/background"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/size_30"
+                android:layout_height="@dimen/size_30"
+                android:visibility="gone"
+                android:indeterminateTint="@color/background"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/size_35"
+            android:textColor="@color/colorGrey"
+            android:fontFamily="@font/varela"
+            android:textSize="@dimen/smaller_text"
+            android:text="Don't have an account?"/>
+
+        <TextView
+            android:id="@+id/change_page_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_marginTop="@dimen/size_10"
+            android:background="@drawable/stroke_light_grey_15"
+            android:gravity="center"
+            android:textColor="@color/colorLightGrey"
+            android:textSize="@dimen/small_text"
+            android:fontFamily="@font/varela"
+            android:text="Create new account"/>
+
+    </LinearLayout>
+
+</FrameLayout>
