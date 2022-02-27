@@ -1,11 +1,13 @@
 package com.caffeine.eirmon.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import com.caffeine.eirmon.R
-import com.caffeine.eirmon.view.util.Constants
+import com.caffeine.eirmon.util.Constants
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
