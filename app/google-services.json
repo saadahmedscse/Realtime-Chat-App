@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "699734821156",
+    "firebase_url": "https://eirmon-dcbcd-default-rtdb.firebaseio.com",
+    "project_id": "eirmon-dcbcd",
+    "storage_bucket": "eirmon-dcbcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699734821156:android:3a9bb4a6c608c3cc90cbb1",
+        "android_client_info": {
+          "package_name": "com.caffeine.eirmon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699734821156-78nir5vuc19rvae3hpf22uk4745q73l7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDfjMitvl5foVLq9EWjYyp2MWXhMyGbO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699734821156-78nir5vuc19rvae3hpf22uk4745q73l7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
