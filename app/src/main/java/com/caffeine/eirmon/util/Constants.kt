@@ -4,12 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginEnd
+import com.caffeine.eirmon.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -20,8 +24,8 @@ object Constants {
     val auth = FirebaseAuth.getInstance()
     val currentUser = auth.currentUser
     val userReference = reference.child("Users")
-    const val LONG = 1
-    const val SHORT = 0
+    const val LONG = Snackbar.LENGTH_LONG
+    const val SHORT = Snackbar.LENGTH_SHORT
 
     fun intentToActivity(activity : Activity, c : Class<*>){
         activity.startActivity(Intent(activity, c))
@@ -59,7 +63,8 @@ object Constants {
         Toast.makeText(context, message, duration).show()
     }
 
-    fun showSnackBar(view : View, message: String, duration : Int){
+    fun showSnackBar(context : Context, view : View, message: String, duration : Int){
+
         val snackBar = Snackbar.make(view, message, duration)
         snackBar.setAction("Close") {
             snackBar.dismiss()
@@ -67,10 +72,16 @@ object Constants {
 
         snackBar.setActionTextColor(Color.WHITE)
         val snackbarView = snackBar.view
+        val font = ResourcesCompat.getFont(context, R.font.varela)
 
-        snackbarView.setBackgroundColor(Color.DKGRAY)
-        val textView = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-        textView.setTextColor(Color.LTGRAY)
+        snackbarView.setBackgroundResource(R.drawable.bg_dark_grey_5)
+        val snackText = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+        val snackActionText = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_action)
+        snackText.setTextColor(Color.LTGRAY)
+        snackText.typeface = font
+        snackActionText.typeface = font
+        snackActionText.isAllCaps = false
+        snackActionText.setTextColor(context.resources.getColor(R.color.colorLightRed))
         snackBar.show()
     }
 }
