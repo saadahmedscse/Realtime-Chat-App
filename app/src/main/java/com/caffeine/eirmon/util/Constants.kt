@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.marginEnd
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.caffeine.eirmon.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -24,8 +25,19 @@ object Constants {
     val auth = FirebaseAuth.getInstance()
     val currentUser = auth.currentUser
     val userReference = reference.child("Users")
-    const val LONG = Snackbar.LENGTH_LONG
-    const val SHORT = Snackbar.LENGTH_SHORT
+
+    const val SNACK_LONG = Snackbar.LENGTH_LONG
+    const val SNACK_SHORT = Snackbar.LENGTH_SHORT
+    const val TOAST_LONG = Toast.LENGTH_LONG
+    const val TOAST_SHORT = Toast.LENGTH_SHORT
+
+    fun getHorizontalLayoutManager(context : Context) : LinearLayoutManager{
+        return LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun getVerticalLayoutManager(context : Context) : LinearLayoutManager{
+        return LinearLayoutManager(context)
+    }
 
     fun intentToActivity(activity : Activity, c : Class<*>){
         activity.startActivity(Intent(activity, c))
