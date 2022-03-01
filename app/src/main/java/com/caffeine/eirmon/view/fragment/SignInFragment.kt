@@ -39,6 +39,9 @@ class SignInFragment : Fragment() {
                 if (Constants.internetAvailable(requireContext())){
                     viewModel.loginUser(email, password)
                 }
+                else{
+                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.LONG)
+                }
             }
         }
 

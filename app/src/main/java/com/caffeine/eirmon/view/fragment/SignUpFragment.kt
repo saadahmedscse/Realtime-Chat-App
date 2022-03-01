@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.caffeine.eirmon.R
 import com.caffeine.eirmon.databinding.FragmentSignUpBinding
 import com.caffeine.eirmon.util.AlertDialog
@@ -31,6 +32,10 @@ class SignUpFragment : Fragment() {
     ): View {
         binding = FragmentSignUpBinding.inflate(inflater)
 
+        binding.changePageBtn.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.sign_up_to_sign_in)
+        }
+
         binding.authBtn.setOnClickListener{
             initialize()
             if (validate()){
@@ -41,6 +46,9 @@ class SignUpFragment : Fragment() {
                         password,
                         "null"
                     )
+                }
+                else{
+                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.LONG)
                 }
             }
         }
