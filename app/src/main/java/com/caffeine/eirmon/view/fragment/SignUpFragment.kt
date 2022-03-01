@@ -48,7 +48,7 @@ class SignUpFragment : Fragment() {
                     )
                 }
                 else{
-                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.LONG)
+                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.SNACK_LONG)
                 }
             }
         }

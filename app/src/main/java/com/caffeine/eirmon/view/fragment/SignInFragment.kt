@@ -40,7 +40,7 @@ class SignInFragment : Fragment() {
                     viewModel.loginUser(email, password)
                 }
                 else{
-                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.LONG)
+                    Constants.showSnackBar(requireContext(), it, "Check your internet connection", Constants.SNACK_LONG)
                 }
             }
         }
