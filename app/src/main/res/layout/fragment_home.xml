@@ -43,6 +43,7 @@
                 android:layout_height="@dimen/size_45"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/profile" />
 
         </RelativeLayout>
