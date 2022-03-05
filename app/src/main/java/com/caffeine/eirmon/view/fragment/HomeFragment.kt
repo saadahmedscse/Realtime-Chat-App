@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.caffeine.eirmon.R
 import com.caffeine.eirmon.databinding.FragmentHomeBinding
+import com.caffeine.eirmon.util.AlertDialog
 import com.caffeine.eirmon.util.Constants
 import com.caffeine.eirmon.util.DataState
 import com.caffeine.eirmon.view.adapter.UserAdapter
 import com.caffeine.eirmon.viewmodel.UserViewModel
+import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +35,7 @@ class HomeFragment : Fragment() {
         binding.chatsRecyclerView.layoutManager = Constants.getVerticalLayoutManager(requireContext())
 
         userViewModel.getUsers()
+        userViewModel.getMyDetails()
 
         userViewModel.userLiveData.observe(viewLifecycleOwner){
             when(it){
@@ -48,6 +51,23 @@ class HomeFragment : Fragment() {
                 is DataState.Failed -> {
                     Constants.showSnackBar(requireContext(), binding.root, it.message!!, Constants.SNACK_LONG)
                 }
+            }
+        }
+
+        userViewModel.myLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Loading -> {}
+
+                is DataState.Success -> {
+                    if (it.data?.picture != "null") {
+                        Picasso.get().load(it.data?.picture).into(binding.profilePicture)
+                    }
+                }
+
+                is DataState.Failed -> {
+                    Constants.showSnackBar(requireContext(), binding.root, it.message!!, Constants.SNACK_LONG)
+                }
+
             }
         }
 
