@@ -35,5 +35,12 @@
         android:id="@+id/editProfileFragment"
         android:name="com.caffeine.eirmon.view.fragment.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="user"
+            app:argType="com.caffeine.eirmon.service.model.UserModel"/>
+        <action
+            android:id="@+id/edit_profile_to_profile"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>
