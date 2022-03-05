@@ -18,10 +18,12 @@ import com.caffeine.eirmon.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 object Constants {
     const val app_name = "Eirmon"
     val reference = FirebaseDatabase.getInstance().reference.child(app_name)
+    val storageRef = FirebaseStorage.getInstance().reference
     val auth = FirebaseAuth.getInstance()
     val currentUser = auth.currentUser
     val userReference = reference.child("Users")
