@@ -1,5 +1,7 @@
 package com.caffeine.eirmon.service.repository
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.caffeine.eirmon.service.model.UserModel
 import com.caffeine.eirmon.util.Constants
@@ -30,5 +32,74 @@ class UserRepository : UserInterface {
             }
 
         })
+    }
+
+    override fun getMyDetails(myMutableLiveData: MutableLiveData<DataState<UserModel>>) {
+        myMutableLiveData.postValue(DataState.Loading())
+        Constants.userReference.child(Constants.auth.uid!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.getValue(UserModel::class.java).let {
+                    myMutableLiveData.postValue(DataState.Success(it))
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                myMutableLiveData.postValue(DataState.Failed(error.message))
+            }
+
+        })
+    }
+
+    override fun updateProfile(
+        profileMutableLiveData: MutableLiveData<DataState<String>>,
+        user : UserModel,
+        name : String,
+        picture : Uri
+    ) {
+        profileMutableLiveData.postValue(DataState.Loading())
+        var url = ""
+
+        if (picture.toString() == "android.resource://com.caffeine.eirmon/2131165367"){
+            val updatedUser = UserModel(user.uid, name, user.email, user.password, user.picture)
+
+            Constants.userReference.child(user.uid).setValue(updatedUser)
+                .addOnCompleteListener{
+                    if (it.isSuccessful){
+                        profileMutableLiveData.postValue(DataState.Success("Profile updated successfully"))
+                    }
+
+                    else{
+                        profileMutableLiveData.postValue(DataState.Failed(it.exception?.message))
+                    }
+                }
+        }
+
+        else{
+            Constants.storageRef.child(user.uid).putFile(picture)
+                .addOnCompleteListener{
+                    if (it.isSuccessful){
+                        Constants.storageRef.child(user.uid).downloadUrl
+                            .addOnSuccessListener { downloadTask ->
+                                url = downloadTask.toString()
+
+                                val updatedUser = UserModel(user.uid, name, user.email, user.password, url)
+
+                                Constants.userReference.child(user.uid).setValue(updatedUser)
+                                    .addOnCompleteListener{ updateTask ->
+                                        if (updateTask.isSuccessful){
+                                            profileMutableLiveData.postValue(DataState.Success("Profile updated successfully"))
+                                        }
+
+                                        else{
+                                            profileMutableLiveData.postValue(DataState.Failed(updateTask.exception?.message))
+                                        }
+                                    }
+                            }
+                    }
+                    else{
+                        profileMutableLiveData.postValue(DataState.Failed(it.exception?.message))
+                    }
+                }
+        }
     }
 }
